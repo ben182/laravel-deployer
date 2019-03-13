@@ -1,0 +1,54 @@
+{
+    "name": "ben182/laravel-deployer",
+    "description": "Laravel Deployer with custom functions",
+    "keywords": [
+        "ben182",
+        "laravel-deployer"
+    ],
+    "homepage": "https://github.com/ben182/laravel-deployer",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Ben",
+            "email": "moin@benjaminbortels.de",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.1",
+        "illuminate/support": "5.8.*"
+    },
+    "require-dev": {
+        "orchestra/testbench": "3.8.*",
+        "phpunit/phpunit": "^7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Ben182\\LaravelDeployer\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Ben182\\LaravelDeployer\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Ben182\\LaravelDeployer\\LaravelDeployerServiceProvider"
+            ],
+            "aliases": {
+                "LaravelDeployer": "Ben182\\LaravelDeployer\\LaravelDeployerFacade"
+            }
+        }
+    }
+}
