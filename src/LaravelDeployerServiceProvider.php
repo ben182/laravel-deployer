@@ -3,6 +3,7 @@
 namespace Ben182\LaravelDeployer;
 
 use Illuminate\Support\ServiceProvider;
+use Ben182\LaravelDeployer\Commands\DeployInfo;
 
 class LaravelDeployerServiceProvider extends ServiceProvider
 {
@@ -19,10 +20,17 @@ class LaravelDeployerServiceProvider extends ServiceProvider
         // $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
         // $this->loadRoutesFrom(__DIR__.'/routes.php');
 
+        $old = config('deploy.include');
+        config([
+            'deploy.include' => array_merge($old, [
+                'vendor/ben182/laravel-deployer/recipes.php',
+            ])
+        ]);
+
         if ($this->app->runningInConsole()) {
-            $this->publishes([
-                __DIR__.'/../config/config.php' => config_path('laravel-deployer.php'),
-            ], 'config');
+            // $this->publishes([
+            //     __DIR__.'/../config/config.php' => config_path('laravel-deployer.php'),
+            // ], 'config');
 
             // Publishing the views.
             /*$this->publishes([
@@ -40,7 +48,9 @@ class LaravelDeployerServiceProvider extends ServiceProvider
             ], 'lang');*/
 
             // Registering package commands.
-            // $this->commands([]);
+            $this->commands([
+                DeployInfo::class,
+            ]);
         }
     }
 
@@ -50,11 +60,11 @@ class LaravelDeployerServiceProvider extends ServiceProvider
     public function register()
     {
         // Automatically apply the package configuration
-        $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'laravel-deployer');
+        // $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'laravel-deployer');
 
-        // Register the main class to use with the facade
-        $this->app->singleton('laravel-deployer', function () {
-            return new LaravelDeployer;
-        });
+        // // Register the main class to use with the facade
+        // $this->app->singleton('laravel-deployer', function () {
+        //     return new LaravelDeployer;
+        // });
     }
 }
