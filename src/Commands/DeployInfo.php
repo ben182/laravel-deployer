@@ -18,7 +18,7 @@ class DeployInfo extends Command
      *
      * @var string
      */
-    protected $description = 'Sets deploy relevent information';
+    protected $description = 'Sets deploy relevant information';
 
     /**
      * Create a new command instance.
