@@ -43,6 +43,4 @@ task('artisan:envSync', function () {
     run("cd {{release_path}} && cp .env .env.backup");
     artisan('env:sync --no-interaction', ['showOutput'])();
 });
-
-task('artisan:envSync', artisan('env:sync --no-interaction', ['showOutput']));
 task('artisan:backup', artisan('backup:run --only-db', ['showOutput', 'runInCurrent']));
