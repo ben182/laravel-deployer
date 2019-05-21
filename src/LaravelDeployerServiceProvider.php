@@ -50,7 +50,6 @@ class LaravelDeployerServiceProvider extends ServiceProvider
             // Registering package commands.
             $this->commands([
                 DeployInfo::class,
-                \Bugsnag\BugsnagLaravel\Commands\DeployCommand::class,
             ]);
         }
     }
