@@ -17,7 +17,7 @@
     ],
     "require": {
         "php": "^7.1",
-        "illuminate/support": "~5.0",
+        "illuminate/support": "~5.0|^6.0",
         "lorisleiva/laravel-deployer": "^0.2.8"
     },
     "require-dev": {
