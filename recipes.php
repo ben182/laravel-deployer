@@ -43,4 +43,11 @@ task('artisan:envSync', function () {
     run("cd {{release_path}} && cp .env .env.backup");
     artisan('env:sync --no-interaction', ['showOutput'])();
 });
+
 task('artisan:backup', artisan('backup:run --only-db', ['showOutput', 'runInCurrent']));
+
+task('supervisor:restart', function () {
+    $name = get('supervisorName');
+    $output = run("sudo supervisorctl restart $name");
+    writeln("<info>$output</info>");
+});
